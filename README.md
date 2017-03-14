@@ -1,6 +1,6 @@
 # Facebook Graph API (TypeScript)
 
-TypeScript type definitions for **Facebook Graph API** version 2.8.
+TypeScript type definitions for Facebook Graph API version 2.8.
 
 Reference: https://developers.facebook.com/docs/graph-api/reference
 
