@@ -2,21 +2,21 @@
  * TypeScript type definitions for Facebook Graph API version 2.8
  * https://developers.facebook.com/docs/graph-api/reference
  *
- * Definitions by: Alex Siman <https://github.com/siman>
+ * Definitions by: Alex Siman https://github.com/siman
  */
 declare module FbGraphApi {
 
   export type FbDateTime = string;
 
-  export type FbProfile = 
+  export type FbProfile =
     FbUser | FbPage | FbGroup | FbEvent | FbApp;
 
-  export type FbPrivacy = 
+  export type FbPrivacy =
     "CLOSED" | "OPEN" | "SECRET";
 
   export type FbAlbumType =
     "app" | "cover" | "profile" | "mobile" | "wall" | "normal" | "album";
-  
+
   export type FbEntityAtTextRangeType =
     "user" | "page" | "event" | "group" | "application";
 
@@ -25,6 +25,10 @@ declare module FbGraphApi {
 
   export type FbVideoStatusEnum =
     "ready" | "processing" | "error";
+
+  export type FbAppSupportedPlatforms =
+    "WEB" | "CANVAS" | "MOBILE_WEB" | "IPHONE" | "IPAD" | "ANDROID" | "WINDOWS" |
+    "AMAZON" | "SUPPLEMENTARY_IMAGES" | "GAMEROOM";
 
   export interface FbUser {
     id: string;
@@ -46,7 +50,7 @@ declare module FbGraphApi {
     gender: string;
     hometown: FbPage;
     inspirational_people: FbExperience[];
-    install_type: string; // Originally 'enum' on FB API docs.
+    install_type: string; // Originally 'enum' on FB API docs.
     installed: boolean;
     interested_in: string[];
     is_shared_login: boolean;
@@ -336,7 +340,7 @@ declare module FbGraphApi {
     year: number;
   }
 
-  // TODO check number vs bool (use API explorer)
+  // TODO check number vs bool (use API explorer)
   export interface FbPageRestaurantSpecialties {
     breakfast: number;
     coffee: number;
@@ -345,7 +349,7 @@ declare module FbGraphApi {
     lunch: number;
   }
 
-  // TODO check number vs bool (use API explorer)
+  // TODO check number vs bool (use API explorer)
   export interface FbPageRestaurantServices {
     catering: number;
     delivery: number;
@@ -359,11 +363,16 @@ declare module FbGraphApi {
     walkins: number;
   }
 
+  /** 
+   * See:
+   * https://developers.facebook.com/docs/marketing-api/targeting-specs/v2.8
+   * https://github.com/facebook/facebook-php-ads-sdk/tree/master/src/FacebookAds/Object
+   */
   export interface FbTargeting {
     // TODO impl: big complex object
   }
 
-  // TODO check number vs bool (use API explorer)
+  // TODO check number vs bool (use API explorer)
   export interface FbPagePaymentOptions {
     amex: number;
     cash_only: number;
@@ -372,7 +381,7 @@ declare module FbGraphApi {
     visa: number;
   }
 
-  // TODO check number vs bool (use API explorer)
+  // TODO check number vs bool (use API explorer)
   export interface FbPageParking {
     lot: number
     street: number
@@ -577,7 +586,112 @@ declare module FbGraphApi {
   }
 
   export interface FbApp {
-    // TODO impl
+    id: string
+    an_platforms: string[]
+    app_ad_debug_info: FbApplicationAppAdDebugInfo
+    app_domains: string[]
+    app_install_tracked: boolean
+    app_name: string
+    app_type: number
+    auth_dialog_data_help_url: string
+    auth_dialog_headline: string
+    auth_dialog_perms_explanation: string
+    auth_referral_default_activity_privacy: string
+    auth_referral_enabled: number
+    auth_referral_extended_perms: string[]
+    auth_referral_friend_perms: string[]
+    auth_referral_response_type: string
+    auth_referral_user_perms: string[]
+    canvas_fluid_height: boolean
+    canvas_fluid_width: number
+    canvas_url: string
+    category: string
+    client_config: Map<any, any>
+    company: string
+    configured_ios_sso: boolean
+    contact_email: string
+    context: FbApplicationContext
+    created_time: FbDateTime
+    creator_uid: string
+    daily_active_users: string // numeric string
+    daily_active_users_rank: number
+    deauth_callback_url: string
+    default_share_mode: string
+    description: string
+    hosting_url: string
+    icon_url: string
+    ios_bundle_id: string[]
+    ios_supports_native_proxy_auth_flow: boolean
+    ios_supports_system_auth: boolean
+    ipad_app_store_id: string
+    iphone_app_store_id: string
+    link: string
+    logging_token: string
+    logo_url: string
+    migrations: Map<string, boolean>
+    mobile_profile_section_url: string
+    mobile_web_url: string
+    monthly_active_users: string // numeric string
+    monthly_active_users_rank: number
+    name: string
+    namespace: string
+    object_store_urls: FbApplicationObjectStoreUrls
+    page_tab_default_name: string
+    page_tab_url: string
+    privacy_policy_url: string
+    profile_section_url: string
+    restrictions: FbApplicationRestrictionInfo
+    secure_canvas_url: string
+    secure_page_tab_url: string
+    server_ip_whitelist: string
+    social_discovery: number
+    subcategory: string
+    supported_platforms: FbAppSupportedPlatforms[]
+    terms_of_service_url: string
+    url_scheme_suffix: string
+    user_support_email: string
+    user_support_url: string
+    website_url: string
+    weekly_active_users: string // numeric string
+  }
+
+  export interface FbApplicationAppAdDebugInfo {
+    android_installs_over_last_seven_days: number
+    android_missing_settings: string[]
+    android_support_status: string
+    ios_install_invalidation_schemes: string[]
+    ios_installs_over_last_seven_days: number
+    ios_missing_settings: string[]
+    ios_support_status: string
+    is_app_child_app: boolean
+    is_app_in_dev_mode: boolean
+    is_cpa_enabled_for_android: boolean
+    is_cpa_enabled_for_ios: boolean
+    is_ocpm_enabled: boolean
+    last_android_deferred_deep_link_call: FbDateTime
+    last_android_install: FbDateTime
+    last_ios_deferred_deep_link_call: FbDateTime
+    last_ios_install: FbDateTime
+  }
+
+  export interface FbApplicationContext {
+    id: string
+  }
+
+  export interface FbApplicationObjectStoreUrls {
+    amazon_app_store: string
+    fb_canvas: string
+    google_play: string
+    itunes: string
+    itunes_ipad: string
+    windows_10_store: string
+  }
+
+  export interface FbApplicationRestrictionInfo {
+    age: string
+    age_distribution: string
+    location: string
+    type: string
   }
 
   export interface FbRequest {
@@ -632,7 +746,7 @@ declare module FbGraphApi {
      */
     offset_y: number
 
-    /** Direct URL for the person's cover photo image. */
+    /** Direct URL for the person's cover photo image. */
     source: string
   }
 
@@ -676,13 +790,13 @@ declare module FbGraphApi {
 
   export interface FbInstagramUser {
     id: string
-    follow_count: number
-    followed_by_count: number
-    has_profile_picture: boolean
-    is_private: boolean
-    media_count: number
-    profile_pic: string
-    username: string
+    follow_count: number
+    followed_by_count: number
+    has_profile_picture: boolean
+    is_private: boolean
+    media_count: number
+    profile_pic: string
+    username: string
   }
 
   export interface FbLifeEvent {
@@ -715,16 +829,16 @@ declare module FbGraphApi {
   }
 
   export interface FbEventOwner {
-    id: string;
-    name: string;
+    id: string;
+    name: string;
   }
 
   export interface FbEvent {
     id: string;
-    //category: enum // TODO Resolve enum.
+    //category: enum // TODO Resolve enum.
     cover: FbCoverPhoto;
     description: string;
-    //type: enum; // TODO Resolve enum.
+    //type: enum; // TODO Resolve enum.
     end_time: FbDateTime;
     is_viewer_admin: boolean;
     is_page_owned: boolean;
@@ -736,7 +850,7 @@ declare module FbGraphApi {
     place: FbPlace;
     start_time: FbDateTime;
     ticket_uri: string;
-    //timezone: enum; // TODO Resolve
+    //timezone: enum; // TODO Resolve
     updated_time: FbDateTime;
     attending_count: number;
     declined_count: number;
@@ -939,10 +1053,10 @@ declare module FbGraphApi {
 
   export type FbPostStatusType =
     "mobile_status_update" | "created_note" | "added_photos" | "added_video" | "shared_story" |
-    "created_group" | "created_event" | "wall_post" | "app_created_story" | "published_story" |
-    "tagged_in_photo" | "approved_friend"
-  ;
-  
+      "created_group" | "created_event" | "wall_post" | "app_created_story" | "published_story" |
+      "tagged_in_photo" | "approved_friend"
+    ;
+
   export interface FbPostProperty {
     name: string
     text: string
@@ -966,8 +1080,8 @@ declare module FbGraphApi {
     id: string
     attachment: FbStoryAttachment
     can_comment: boolean
-    can_remove: boolean
-    can_hide: boolean
+    can_remove: boolean
+    can_hide: boolean
     can_like: boolean
     can_reply_privately: boolean
     comment_count: number
@@ -984,9 +1098,9 @@ declare module FbGraphApi {
 
   export interface FbCommentMessageTag {
     id: string
-    name: string
-    type: "user" | "page" | "group"
-    offset: number
+    name: string
+    type: "user" | "page" | "group"
+    offset: number
     length: number
   }
 
@@ -1019,7 +1133,7 @@ declare module FbGraphApi {
     participants: (FbUser | FbPage)[]
     senders: FbUser[]
     can_reply: boolean
-    is_subscribed: boolean
+    is_subscribed: boolean
   }
 
   export interface FbConversationTag {
@@ -1104,7 +1218,7 @@ declare module FbGraphApi {
     id: string
     list_type: string
     name: string
-    owner: string
+    owner: string
   }
 
   export interface FbStatus {
