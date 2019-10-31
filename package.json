@@ -1,0 +1,21 @@
+{
+  "name": "facebook-graph-api",
+  "version": "1.0.0",
+  "description": "TypeScript type definitions for Facebook Graph API version 2.8.",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siman/facebook-graph-api.git"
+  },
+  "keywords": [
+    "facebook",
+    "graph",
+    "api"
+  ],
+  "author": "Alex Siman https://github.com/siman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siman/facebook-graph-api/issues"
+  },
+  "homepage": "https://github.com/siman/facebook-graph-api#readme"
+}
