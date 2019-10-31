@@ -30,61 +30,236 @@ declare module FbGraphApi {
     "WEB" | "CANVAS" | "MOBILE_WEB" | "IPHONE" | "IPAD" | "ANDROID" | "WINDOWS" |
     "AMAZON" | "SUPPLEMENTARY_IMAGES" | "GAMEROOM";
 
+  /** Fields for a Facebook User */
   export interface FbUser {
+
+    /** The ID of this person's user account. This ID is unique to each app and
+     * cannot be used across different apps. Our upgrade guide provides more
+     * information about app-specific IDs */
     id: string;
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     about: string;
+
+    /** The User's address. */
+    address: FbLocation;
+
+    /** Notes added by viewing page on this User. */
     admin_notes: FbPageAdminNote[];
+
+    /** The age segment for this person expressed as a minimum and maximum age.
+     * For example, more than 18, less than 21. */
     age_range: FbAgeRange;
+
+    /** The authentication method a Workplace User has configured for their
+     * account. It can be either "password" or "sso". */
+    auth_method: 'password' | 'sso';
+
+    /** The person's birthday. This is a fixed format string, like MM/DD/YYYY.
+     * However, people can control who can see the year they were born
+     * separately from the month and day so this string can be only the year
+     * (YYYY) or the month + day (MM/DD) */
     birthday: string;
+
+    /** Can the person review brand polls */
     can_review_measurement_request: boolean;
+
     context: FbUserContext;
+
+    /** @deprecated The person's cover photo */
     cover: FbCoverPhoto;
+
+    /** @deprecated The person's local currency information */
     currency: FbCurrency;
+
+    /** @deprecated The list of devices the person is using. This will return
+     * only iOS and Android devices */
     devices: FbUserDevice[];
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     education: FbEducationExperience[];
+
+    /** The User's primary email address listed on their profile. This field
+     * will not be returned if no valid email address is available. */
     email: string;
+
     employee_number: string;
+
+    /** Athletes the User likes. */
     favorite_athletes: FbExperience[];
+
+    /** Sports teams the User likes. */
     favorite_teams: FbExperience[];
+
+    /** The person's first name */
     first_name: string;
+
+    /** The gender selected by this person, male or female. If the gender is set
+     * to a custom value, this value will be based off of the preferred pronoun;
+     * it will be omitted if the preferred pronoun is neutral */
     gender: string;
+
+    /** The person's hometown */
     hometown: FbPage;
+
+    /** The person's inspirational people */
     inspirational_people: FbExperience[];
-    install_type: string; // Originally 'enum' on FB API docs.
+
+    /** Install type (this is an enum, presumably a string enum, but its values
+     * are not documented) */
+    install_type: string;
+
+    /** Is the app making the request installed */
     installed: boolean;
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     interested_in: string[];
+
+    /** If the user has used FAME deeplinking */
+    is_famedeeplinkinguser: boolean;
+
+    /** @deprecated Is the user eligible for messenger platform payment */
+    is_payment_enabled: boolean;
+
+    /** Is this a shared login (e.g. a gray user) */
     is_shared_login: boolean;
+
+    /** @deprecated People with large numbers of followers can have the
+     * authenticity of their identity manually verified by Facebook. This field
+     * indicates whether the person's profile is verified in this way. This is
+     * distinct from the verified field */
     is_verified: boolean;
+
+    /** Labels applied by viewing page on this person */
     labels: FbPageLabel[];
+
+    /** Facebook Pages representing the languages this person knows */
     languages: FbExperience[];
+
+    /** @deprecated Last Ad referral for the user. */
+    last_ad_referral: FbMessengerPlatformReferral;
+
+    /** The person's last name */
     last_name: string;
+
+    /** A link to the person's Timeline. The link will only resolve if the
+     * person clicking the link is logged into Facebook and is a friend of the
+     * person whose profile is being viewed. */
     link: string;
+
+    /** @deprecated Display megaphone for local news bookmark */
+    local_news_megaphone_dismiss_status: boolean;
+
+    /** @deprecated Daily local news notification */
+    local_news_subscription_status: boolean;
+
+    /** @deprecated The person's locale */
     locale: string;
+
+    /** The person's current location as entered by them on their profile. This
+     * field is not related to check-ins */
     location: FbPage;
+
+    /** What the person is interested in meeting for */
     meeting_for: string[];
+
+    /** The person's middle name */
     middle_name: string;
+
+    /** The person's full name */
     name: string;
+
+    /** The person's name formatted to correctly handle Chinese, Japanese, or
+     * Korean ordering */
     name_format: string;
+
+    /** The person's payment pricepoints */
     payment_pricepoints: FbPaymentPricepoints;
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     political: string;
+
+    /** The profile picture URL of the Messenger user. The URL will expire. */
+    profile_pic: string;
+
+    /** The person's PGP public key */
     public_key: string;
+
+    /** The person's favorite quotes */
     quotes: string;
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     relationship_status: string;
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     religion: string;
+
+    /** Security settings */
     security_settings: FbSecuritySettings;
-    shared_login_upgrade_required_by: string;
+
+    /** The time that the shared login needs to be upgraded to Business Manager
+     * by.  Will be ISO-8601 string format, or UNIX epoch format if
+     * `date_format=U` used in Graph API call.  */
+    shared_login_upgrade_required_by: FbDateTime;
+
+    /** Shortened, locale-aware name for the person */
+    short_name: string;
+
+    /** The person's significant other */
     significant_other: FbUser;
+
+    /** Sports played by the person */
     sports: FbExperience[];
+
+    /** Platform test group (this is an unsigned, 32-bit integer) */
     test_group: number;
+
+    /** @deprecated A string containing an anonymous, unique identifier for the
+     * User, for use with third-parties. Deprecated for versions 3.0+. Apps
+     * using older versions of the API can get this field until January 8, 2019.
+     * Apps installed by the User on or after May 1st, 2018, cannot get this
+     * field. */
     third_party_id: string;
+
+    /** @deprecated The person's current timezone offset from UTC (range: -24 to
+     * 24) */
     timezone: number;
+
+    /** A token that is the same across a business's apps. Access to this token
+     * requires that the person be logged into your app or have a role on your
+     * app. This token will change if the business owning the app changes */
     token_for_business: string;
+
+    /** @deprecated Updated time. Will be ISO-8601 string format, or UNIX epoch
+     * format if `date_format=U` used in Graph API call. */
     updated_time: FbDateTime;
+
+    /** @deprecated Indicates whether the account has been verified. This is
+     * distinct from the `is_verified` field. Someone is considered verified if
+     * they take any of the following actions: Register for mobile; Confirm
+     * their account via SMS; Enter a valid credit card */
     verified: boolean;
+
+    /** Video upload limits */
     video_upload_limits: FbVideoUploadLimits;
+
+    /** Can the viewer send a gift to this person? */
     viewer_can_send_gift: boolean;
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     website: string;
+
+    /** @deprecated Returns no data as of April 4, 2018. */
     work: FbWorkExperience[];
+
+  }
+
+  export interface FbMessengerPlatformReferral {
+    ad_id: string,
+    id: string,
+    ref: string,
+    source: string,
+    type: string,
   }
 
   export interface FbWorkExperience {
